@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Container.css'
 import Treasure from '../Treasure'
-import Axios from 'axios'
+import axios from 'axios';
 
 export default class Container extends Component {
   constructor() {

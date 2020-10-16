@@ -31,30 +31,6 @@ app.use(
     })
 );
 
-module.exports = {
-    register: async(req, res) => {
-        const {username, password , isAdmin} =req.body,
-        db= req.app.get('db');
-
-        const existingUser = await db.get_user({username});
-        if(existingUser[0]){
-            return res.status(404).send('Username taken');
-        }
-
-        let salt = bcrypt.genSaltSync(10),
-            hash = bcrypt.hashSync(password,salt);
-
-        const registeredUser = await db.register_user({isAdmin, username, hash});
-
-        req.session.user = registeredUser[]
-            isAdmin= user.isAdmin,
-            id = user.id,
-            username = user.username
-        ;
-        res.status(201).send(req.session.user);
-    },
-}
-
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login',authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
